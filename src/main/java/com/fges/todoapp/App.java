@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 public class App {
 
     /**
-     * Do not change this method
+     * Do not change this method (test push interface intellij)
      */
     public static void main(String[] args) throws Exception {
         System.exit(exec(args));
