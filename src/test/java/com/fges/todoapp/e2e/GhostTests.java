@@ -3,6 +3,7 @@ package com.fges.todoapp.e2e;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fges.todoapp.App;
+import org.apache.commons.cli.ParseException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -68,7 +69,7 @@ public class GhostTests {
         Assert.assertEquals(this.execOutput, runMain(this.execOutput.sequence));
     }
 
-    private ExecOutput runMain(List<List<String>> sequence) throws IOException {
+    private ExecOutput runMain(List<List<String>> sequence) throws IOException, ParseException {
         var out = System.out;
         ByteArrayOutputStream sout = new ByteArrayOutputStream();
         System.setOut(new PrintStream(sout));
