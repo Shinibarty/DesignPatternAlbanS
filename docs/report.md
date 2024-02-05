@@ -27,3 +27,6 @@
 
 Réalisation du Single Responsability Principle -> Création de nouvelles classes pour séparer les responsabilités.
 
+## TP2
+
+Division du todo en 2 pour le single responsability car il gérait le json et le csv 

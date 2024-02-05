@@ -38,12 +38,14 @@ public class App {
 
         String command = positionalArgs.get(0);
 
+        TodoManager todoManager = new JsonTodoManager();
+
         if (command.equals("insert")) {
-            TodoManager.insertTodo(fileName, positionalArgs.subList(1, positionalArgs.size()));
+            todoManager.insertTodo(fileName, positionalArgs.subList(1, positionalArgs.size()));
         }
 
         if (command.equals("list")) {
-            TodoManager.listTodos(fileName);
+            todoManager.listTodos(fileName);
         }
 
         System.err.println("Done.");

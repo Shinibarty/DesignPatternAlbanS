@@ -84,7 +84,7 @@ public class GhostTests {
 
         return new ExecOutput(
                 sequence,
-                Arrays.stream(sout.toString().split("\n")).toList(),
+                Arrays.stream(sout.toString().split("\n")).map(String::trim).toList(),
                 exitOutput
         );
     }
