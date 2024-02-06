@@ -1,6 +1,10 @@
 package com.fges.todoapp;
 
+import java.util.Optional;
+
 public class Todo {
+
+    public Todo() {}
     private String description;
     private boolean done;
 
@@ -24,4 +28,5 @@ public class Todo {
     public void setDone(boolean done) {
         this.done = done;
     }
+
 }

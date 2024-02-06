@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class JsonTodoManager implements TodoManager {
     @Override
-    public void insertTodo(String fileName, List<String> todos) throws IOException {
+    public void insertTodo(String fileName, Todo todo) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
 
         ObjectMapper mapper = new ObjectMapper();
@@ -22,7 +22,7 @@ public class JsonTodoManager implements TodoManager {
         }
 
         if (actualObj instanceof ArrayNode arrayNode) {
-            arrayNode.addAll(todos.stream().map(JsonNodeFactory.instance::textNode).collect(Collectors.toList()));
+            arrayNode.add(mapper.valueToTree(todo));
         }
 
         FileHandler.writeToFile(fileName, actualObj.toString());
@@ -39,7 +39,16 @@ public class JsonTodoManager implements TodoManager {
         }
 
         if (actualObj instanceof ArrayNode arrayNode) {
-            arrayNode.forEach(node -> System.out.println("- " + node.textValue()));
+            arrayNode.forEach(node -> {
+                Todo todo = mapper.convertValue(node, Todo.class);
+                if (todo.isDone()){
+                    System.out.println("Done: " + todo.getDescription());
+                }
+                else{
+                    System.out.println(todo.getDescription());
+                }
+
+            });
         }
     }
 }

@@ -38,17 +38,40 @@ public class App {
 
         String command = positionalArgs.get(0);
 
-        TodoManager todoManager = new JsonTodoManager();
+        TodoManager todoManager;
 
         if (command.equals("insert")) {
-            todoManager.insertTodo(fileName, positionalArgs.subList(1, positionalArgs.size()));
+            boolean isDone = cmd.hasOption("done");
+            String description = String.join(" ", positionalArgs.subList(1, positionalArgs.size()));
+            Todo todo = new Todo(description, isDone);
+
+            if (fileName.endsWith(".json")) {
+                todoManager = new JsonTodoManager();
+            } else if (fileName.endsWith(".csv")) {
+                todoManager = new CsvTodoManager();
+            } else {
+                System.err.println("Unsupported file format");
+                return 1;
+            }
+
+            todoManager.insertTodo(fileName, todo);
         }
 
         if (command.equals("list")) {
+            if (fileName.endsWith(".json")) {
+                todoManager = new JsonTodoManager();
+            } else if (fileName.endsWith(".csv")) {
+                todoManager = new CsvTodoManager();
+            } else {
+                System.err.println("Unsupported file format");
+                return 1;
+            }
+
             todoManager.listTodos(fileName);
         }
 
         System.err.println("Done.");
         return 0;
     }
+
 }
