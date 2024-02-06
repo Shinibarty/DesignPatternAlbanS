@@ -20,7 +20,7 @@ public class CsvTodoManager implements TodoManager {
     }
 
     @Override
-    public void listTodos(String fileName) throws IOException {
+    public void listTodos(String fileName, boolean showDone) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
 
         System.out.println(Arrays.stream(fileContent.split("\n"))

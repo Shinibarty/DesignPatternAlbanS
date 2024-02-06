@@ -67,7 +67,13 @@ public class App {
                 return 1;
             }
 
-            todoManager.listTodos(fileName);
+            boolean showDone = cmd.hasOption("done");
+            if (showDone) {
+                todoManager.listTodos(fileName, true);
+            } else {
+                todoManager.listTodos(fileName, false);
+            }
+
         }
 
         System.err.println("Done.");
