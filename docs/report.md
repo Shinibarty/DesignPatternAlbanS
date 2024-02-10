@@ -30,3 +30,10 @@ Réalisation du Single Responsability Principle -> Création de nouvelles classe
 ## TP2
 
 Division du todo en 2 pour le single responsability car il gérait le json et le csv 
+
+## TP3
+
+J'ai réussi le flag --done pour le json mais je me suis rendu compte en voulant faire le csv que c'était pas opti du tout.
+J'ai envoyé un mail sur la mauvaise adresse mail je crois pour avoir des infos mais je m'en suis rendu compte trop tard.
+
+Faudrait pouvoir faire en sorte de créer plus simplement les types de fichiers gérés par le programme.
