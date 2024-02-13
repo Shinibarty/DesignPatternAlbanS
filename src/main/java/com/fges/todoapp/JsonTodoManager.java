@@ -28,28 +28,12 @@ public class JsonTodoManager implements TodoManager {
         FileHandler.writeToFile(fileName, actualObj.toString());
     }
 
+
     @Override
     public void listTodos(String fileName, boolean showDone) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
-
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode actualObj = mapper.readTree(fileContent);
-        if (actualObj instanceof MissingNode) {
-            actualObj = JsonNodeFactory.instance.arrayNode();
-        }
-
-        if (actualObj instanceof ArrayNode arrayNode) {
-            arrayNode.forEach(node -> {
-                Todo todo = mapper.convertValue(node, Todo.class);
-                if (!showDone || (showDone && todo.isDone())) {
-                    if (todo.isDone()) {
-                        System.out.println("Done: " + todo.getDescription());
-                    } else {
-                        System.out.println(todo.getDescription());
-                    }
-                }
-            });
-        }
+        TodoPrinter.printTodosFromJson(fileContent, showDone);
     }
+
 }
 
