@@ -31,9 +31,19 @@ Réalisation du Single Responsability Principle -> Création de nouvelles classe
 
 Division du todo en 2 pour le single responsability car il gérait le json et le csv 
 
-## TP3
+## 
 
 J'ai réussi le flag --done pour le json mais je me suis rendu compte en voulant faire le csv que c'était pas opti du tout.
 J'ai envoyé un mail sur la mauvaise adresse mail je crois pour avoir des infos mais je m'en suis rendu compte trop tard.
 
 Faudrait pouvoir faire en sorte de créer plus simplement les types de fichiers gérés par le programme.
+
+## 13/02
+
+Création de TodoPrinter pour mieux gérer le list
+--done qui fonctionne correctement en terminal pour csv mais pas encore ghosttests
+Il faut faire en sorte que les managers soient des façades
+
+Reste à faire : 
+gérer les virgules en csv
+répétition if dans l'App à mieux faire
