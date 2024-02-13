@@ -10,17 +10,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class TodoPrinter {
     public static void printTodos(List<Todo> todos, boolean showDone) {
         todos.forEach(todo -> {
             if (showDone && todo.isDone()) {
-                System.out.println("Done: " + todo.getDescription());
+                System.out.println("- Done: " + todo.getDescription());
             } else if (!showDone && todo.isDone()) {
-                System.out.println("Done: " + todo.getDescription());
+                System.out.println("- Done: " + todo.getDescription());
             } else if (!showDone && !todo.isDone()) {
-                System.out.println(todo.getDescription());
+                System.out.println("- " + todo.getDescription());
             }
         });
     }
@@ -41,10 +42,20 @@ public class TodoPrinter {
     }
 
     public static void printTodosFromCsv(String csvContent, boolean showDone) {
-        List<String> descriptions = Arrays.asList(csvContent.split("\n"));
+        List<String> lines = Arrays.asList(csvContent.split("\n"));
 
-        List<Todo> todos = descriptions.stream()
-                .map(description -> new Todo(description.trim(), false)) // Assuming todos from CSV are not done
+        List<Todo> todos = lines.stream()
+                .map(line -> {
+                    String[] parts = line.split(",");
+                    if (parts.length >= 2) {
+                        String description = parts[0].trim();
+                        boolean isDone = Boolean.parseBoolean(parts[1].trim());
+                        return new Todo(description, isDone);
+                    } else {
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
 
         printTodos(todos, showDone);

@@ -10,7 +10,8 @@ public class CsvTodoManager implements TodoManager {
     public void insertTodo(String fileName, Todo todo) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
 
-        String todoStr = Arrays.asList(todo.getDescription()).stream().collect(Collectors.joining("\n"));
+        String todoStr = String.format("%s,%b", todo.getDescription(), todo.isDone());
+
         if (!fileContent.endsWith("\n") && !fileContent.isEmpty()) {
             fileContent += "\n";
         }
