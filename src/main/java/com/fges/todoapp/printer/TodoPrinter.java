@@ -1,4 +1,9 @@
-package com.fges.todoapp;
+package com.fges.todoapp.printer;
+
+import com.fges.todoapp.model.Todo;
+import com.fges.todoapp.reader.TodoReader;
+import com.fges.todoapp.reader.TodoReaderCsv;
+import com.fges.todoapp.reader.TodoReaderJson;
 
 import java.io.IOException;
 import java.util.List;

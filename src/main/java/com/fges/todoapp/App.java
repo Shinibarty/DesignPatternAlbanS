@@ -1,21 +1,14 @@
 package com.fges.todoapp;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
-import com.fasterxml.jackson.databind.node.MissingNode;
+import com.fges.todoapp.io.CommandLineHandler;
+import com.fges.todoapp.manager.CsvTodoManager;
+import com.fges.todoapp.manager.JsonTodoManager;
+import com.fges.todoapp.manager.TodoManager;
+import com.fges.todoapp.model.Todo;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class App {
 

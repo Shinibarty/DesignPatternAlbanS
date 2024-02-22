@@ -1,4 +1,4 @@
-package com.fges.todoapp;
+package com.fges.todoapp.io;
 import org.apache.commons.cli.*;
 
 public class CommandLineHandler {

@@ -1,7 +1,6 @@
-package com.fges.todoapp;
+package com.fges.todoapp.reader;
 
-import com.fges.todoapp.Todo;
-import com.fges.todoapp.TodoReader;
+import com.fges.todoapp.model.Todo;
 
 import java.util.Arrays;
 import java.util.List;

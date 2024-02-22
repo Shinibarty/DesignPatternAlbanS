@@ -1,14 +1,15 @@
-package com.fges.todoapp;
+package com.fges.todoapp.manager;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.MissingNode;
+import com.fges.todoapp.io.FileHandler;
+import com.fges.todoapp.model.Todo;
+import com.fges.todoapp.printer.TodoPrinter;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class JsonTodoManager implements TodoManager {
     @Override

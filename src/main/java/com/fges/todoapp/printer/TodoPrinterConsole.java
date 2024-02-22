@@ -1,4 +1,6 @@
-package com.fges.todoapp;
+package com.fges.todoapp.printer;
+
+import com.fges.todoapp.model.Todo;
 
 import java.util.List;
 

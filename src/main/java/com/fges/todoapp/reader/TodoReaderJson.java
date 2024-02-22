@@ -1,12 +1,11 @@
-package com.fges.todoapp;
+package com.fges.todoapp.reader;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.databind.node.MissingNode;
-import com.fges.todoapp.Todo;
-import com.fges.todoapp.TodoReader;
+import com.fges.todoapp.model.Todo;
 
 import java.io.IOException;
 import java.util.ArrayList;

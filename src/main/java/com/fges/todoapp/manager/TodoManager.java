@@ -1,7 +1,8 @@
-package com.fges.todoapp;
+package com.fges.todoapp.manager;
+
+import com.fges.todoapp.model.Todo;
 
 import java.io.IOException;
-import java.util.List;
 
 public interface TodoManager {
     void insertTodo(String fileName, Todo todo) throws IOException;

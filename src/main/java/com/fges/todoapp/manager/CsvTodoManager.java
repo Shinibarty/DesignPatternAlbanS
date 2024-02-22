@@ -1,9 +1,10 @@
-package com.fges.todoapp;
+package com.fges.todoapp.manager;
+
+import com.fges.todoapp.io.FileHandler;
+import com.fges.todoapp.model.Todo;
+import com.fges.todoapp.printer.TodoPrinter;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CsvTodoManager implements TodoManager {
     @Override

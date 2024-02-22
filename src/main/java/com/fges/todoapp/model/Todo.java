@@ -1,4 +1,4 @@
-package com.fges.todoapp;
+package com.fges.todoapp.model;
 
 import java.util.Optional;
 

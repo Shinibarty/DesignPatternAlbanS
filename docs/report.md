@@ -47,3 +47,7 @@ Il faut faire en sorte que les managers soient des façades
 Reste à faire : 
 gérer les virgules en csv
 répétition if dans l'App à mieux faire
+
+## TP 3
+
+Avant de faire la nouvelle commande migrate, optimisation du code déjà présent pour les SOLID
