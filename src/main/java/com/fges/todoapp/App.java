@@ -1,5 +1,6 @@
 package com.fges.todoapp;
 
+import com.fges.todoapp.factory.TodoManagerFactory;
 import com.fges.todoapp.io.CommandLineHandler;
 import com.fges.todoapp.manager.CsvTodoManager;
 import com.fges.todoapp.manager.JsonTodoManager;
@@ -31,42 +32,19 @@ public class App {
 
         String command = positionalArgs.get(0);
 
-        TodoManager todoManager;
+        TodoManager todoManager = TodoManagerFactory.getTodoManager(fileName);
 
         if (command.equals("insert")) {
             boolean isDone = cmd.hasOption("done");
             String description = String.join(" ", positionalArgs.subList(1, positionalArgs.size()));
             Todo todo = new Todo(description, isDone);
 
-            if (fileName.endsWith(".json")) {
-                todoManager = new JsonTodoManager();
-            } else if (fileName.endsWith(".csv")) {
-                todoManager = new CsvTodoManager();
-            } else {
-                System.err.println("Unsupported file format");
-                return 1;
-            }
-
             todoManager.insertTodo(fileName, todo);
         }
 
         if (command.equals("list")) {
-            if (fileName.endsWith(".json")) {
-                todoManager = new JsonTodoManager();
-            } else if (fileName.endsWith(".csv")) {
-                todoManager = new CsvTodoManager();
-            } else {
-                System.err.println("Unsupported file format");
-                return 1;
-            }
-
             boolean showDone = cmd.hasOption("done");
-            if (showDone) {
-                todoManager.listTodos(fileName, true);
-            } else {
-                todoManager.listTodos(fileName, false);
-            }
-
+            todoManager.listTodos(fileName, showDone);
         }
 
         System.err.println("Done.");
