@@ -7,6 +7,7 @@ import com.fges.todoapp.manager.JsonTodoManager;
 import com.fges.todoapp.manager.TodoManager;
 import com.fges.todoapp.model.Todo;
 import org.apache.commons.cli.*;
+import java.text.ParseException;
 
 import java.io.IOException;
 import java.util.List;
@@ -20,7 +21,7 @@ public class App {
         System.exit(exec(args));
     }
 
-    public static int exec(String[] args) throws IOException, ParseException {
+    public static int exec(String[] args) throws IOException, ParseException, org.apache.commons.cli.ParseException {
         CommandLine cmd = CommandLineHandler.parseArguments(args);
         String fileName = cmd.getOptionValue("s");
 

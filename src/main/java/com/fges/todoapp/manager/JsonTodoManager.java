@@ -8,25 +8,24 @@ import com.fasterxml.jackson.databind.node.MissingNode;
 import com.fges.todoapp.io.FileHandler;
 import com.fges.todoapp.model.Todo;
 import com.fges.todoapp.printer.TodoPrinter;
+import com.fges.todoapp.reader.TodoReaderJson;
+import com.fges.todoapp.writer.TodoWriterJson;
 
 import java.io.IOException;
 
 public class JsonTodoManager implements TodoManager {
+
+    private final TodoReaderJson todoReaderJson;
+    private final TodoWriterJson todoWriterJson;
+
+    public JsonTodoManager(TodoReaderJson todoReaderJson, TodoWriterJson todoWriterJson) {
+        this.todoReaderJson = todoReaderJson;
+        this.todoWriterJson = todoWriterJson;
+    }
+
     @Override
     public void insertTodo(String fileName, Todo todo) throws IOException {
-        String fileContent = FileHandler.readFileContent(fileName);
-
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode actualObj = mapper.readTree(fileContent);
-        if (actualObj instanceof MissingNode) {
-            actualObj = JsonNodeFactory.instance.arrayNode();
-        }
-
-        if (actualObj instanceof ArrayNode arrayNode) {
-            arrayNode.add(mapper.valueToTree(todo));
-        }
-
-        FileHandler.writeToFile(fileName, actualObj.toString());
+        todoWriterJson.writeTodo(fileName, todo);
     }
 
     @Override
