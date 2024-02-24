@@ -11,7 +11,7 @@ public class CsvTodoManager implements TodoManager {
     public void insertTodo(String fileName, Todo todo) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
 
-        String todoStr = String.format("%s,%b", todo.getDescription(), todo.isDone());
+        String todoStr = String.format("%s,,,%b", todo.getDescription(), todo.isDone());
 
         if (!fileContent.endsWith("\n") && !fileContent.isEmpty()) {
             fileContent += "\n";
@@ -27,5 +27,3 @@ public class CsvTodoManager implements TodoManager {
         TodoPrinter.printTodosFromCsv(fileContent, showDone);
     }
 }
-
-

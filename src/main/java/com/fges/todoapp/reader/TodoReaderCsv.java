@@ -14,7 +14,7 @@ public class TodoReaderCsv implements TodoReader {
 
         return lines.stream()
                 .map(line -> {
-                    String[] parts = line.split(",");
+                    String[] parts = line.split(",,,");
                     if (parts.length >= 2) {
                         String description = parts[0].trim();
                         boolean isDone = Boolean.parseBoolean(parts[1].trim());

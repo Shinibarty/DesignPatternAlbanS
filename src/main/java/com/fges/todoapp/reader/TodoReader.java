@@ -8,4 +8,3 @@ import java.util.List;
 public interface TodoReader {
     List<Todo> readTodos(String content) throws IOException;
 }
-

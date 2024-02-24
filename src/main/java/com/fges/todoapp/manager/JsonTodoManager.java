@@ -29,12 +29,9 @@ public class JsonTodoManager implements TodoManager {
         FileHandler.writeToFile(fileName, actualObj.toString());
     }
 
-
     @Override
     public void listTodos(String fileName, boolean showDone) throws IOException {
         String fileContent = FileHandler.readFileContent(fileName);
         TodoPrinter.printTodosFromJson(fileContent, showDone);
     }
-
 }
-
