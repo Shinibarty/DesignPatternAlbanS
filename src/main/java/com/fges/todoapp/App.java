@@ -21,7 +21,7 @@ public class App {
         System.exit(exec(args));
     }
 
-    public static int exec(String[] args) throws IOException, ParseException, org.apache.commons.cli.ParseException {
+    public static int exec(String[] args) throws IOException, org.apache.commons.cli.ParseException {
         CommandLine cmd = CommandLineHandler.parseArguments(args);
         String fileName = cmd.getOptionValue("s");
 
@@ -33,6 +33,7 @@ public class App {
 
         String command = positionalArgs.get(0);
 
+        /* a modifier pour utiliser migrate */
         TodoManager todoManager = TodoManagerFactory.getTodoManager(fileName);
 
         if (command.equals("insert")) {
@@ -47,6 +48,10 @@ public class App {
             boolean showDone = cmd.hasOption("done");
             todoManager.listTodos(fileName, showDone);
         }
+
+        /*
+        si migrate
+        */
 
         System.err.println("Done.");
         return 0;

@@ -6,3 +6,5 @@ target
 tmp-*
 test.csv
 test.json
+s.csv
+s.json
