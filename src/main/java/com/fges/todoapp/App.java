@@ -1,11 +1,16 @@
 package com.fges.todoapp;
 
+import com.fges.todoapp.factory.TodoDestinationWriterFactory;
 import com.fges.todoapp.factory.TodoManagerFactory;
+import com.fges.todoapp.factory.TodoSourceReaderFactory;
 import com.fges.todoapp.io.CommandLineHandler;
+import com.fges.todoapp.io.MigrateCommand;
 import com.fges.todoapp.manager.CsvTodoManager;
 import com.fges.todoapp.manager.JsonTodoManager;
 import com.fges.todoapp.manager.TodoManager;
 import com.fges.todoapp.model.Todo;
+import com.fges.todoapp.reader.TodoReader;
+import com.fges.todoapp.writer.TodoWriter;
 import org.apache.commons.cli.*;
 import java.text.ParseException;
 
@@ -20,7 +25,6 @@ public class App {
     public static void main(String[] args) throws Exception {
         System.exit(exec(args));
     }
-
     public static int exec(String[] args) throws IOException, org.apache.commons.cli.ParseException {
         CommandLine cmd = CommandLineHandler.parseArguments(args);
         String fileName = cmd.getOptionValue("s");
@@ -33,27 +37,33 @@ public class App {
 
         String command = positionalArgs.get(0);
 
-        /* a modifier pour utiliser migrate */
         TodoManager todoManager = TodoManagerFactory.getTodoManager(fileName);
 
-        if (command.equals("insert")) {
-            boolean isDone = cmd.hasOption("done");
-            String description = String.join(" ", positionalArgs.subList(1, positionalArgs.size()));
-            Todo todo = new Todo(description, isDone);
+        switch (command) {
+            case "insert" -> {
+                boolean isDone = cmd.hasOption("done");
+                String description = String.join(" ", positionalArgs.subList(1, positionalArgs.size()));
+                Todo todo = new Todo(description, isDone);
 
-            todoManager.insertTodo(fileName, todo);
+                todoManager.insertTodo(fileName, todo);
+            }
+            case "list" -> {
+                boolean showDone = cmd.hasOption("done");
+                todoManager.listTodos(fileName, showDone);
+            }
+            case "migrate" -> {
+                String outputFileName = cmd.getOptionValue("output");
+                if (outputFileName == null) {
+                    System.err.println("Missing required option --output");
+                    return 1;
+                }
+
+                MigrateCommand migrateCommand = new MigrateCommand();
+                migrateCommand.migrate(fileName, outputFileName);
+            }
         }
-
-        if (command.equals("list")) {
-            boolean showDone = cmd.hasOption("done");
-            todoManager.listTodos(fileName, showDone);
-        }
-
-        /*
-        si migrate
-        */
 
         System.err.println("Done.");
         return 0;
     }
-}
+    }

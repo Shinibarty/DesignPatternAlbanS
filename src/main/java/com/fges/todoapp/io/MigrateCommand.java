@@ -12,18 +12,16 @@ import java.io.IOException;
 import java.util.List;
 
 public class MigrateCommand {
-    public static void migrate(CommandLine cmd) throws IOException {
-        String sourceFile = cmd.getOptionValue("s");
-        String outputFile = cmd.getOptionValue("o");
+    public void migrate(String sourceFileName, String destinationFileName) throws IOException {
+        TodoReader sourceReader = TodoSourceReaderFactory.createReader(sourceFileName);
+        TodoWriter destinationWriter = TodoDestinationWriterFactory.createWriter(destinationFileName);
+        String sourceFileContent = FileHandler.readFileContent(sourceFileName);
 
-        TodoReader sourceReader = TodoSourceReaderFactory.createReader(sourceFile);
-        TodoWriter destinationWriter = TodoDestinationWriterFactory.createWriter(outputFile);
-
-        List<Todo> todos = sourceReader.readTodos(sourceFile);
+        List<Todo> todos = sourceReader.readTodos(sourceFileContent);
         for (Todo todo : todos) {
-            destinationWriter.writeTodo(outputFile,todo);
+            destinationWriter.writeTodo(destinationFileName, todo);
         }
 
-        System.out.println("Migration completed.");
+        System.err.println("Migration completed.");
     }
 }

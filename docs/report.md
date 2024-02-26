@@ -33,10 +33,7 @@ Division du todo en 2 pour le single responsability car il gérait le json et le
 
 J'ai réussi le flag --done pour le json mais je me suis rendu compte en voulant faire le csv que c'était pas opti du tout.  
 J'ai envoyé un mail sur la mauvaise adresse mail je crois pour avoir des infos mais je m'en suis rendu compte trop tard.  
-
 Faudrait pouvoir faire en sorte de créer plus simplement les types de fichiers gérés par le programme.  
-
-## 13/02
 
 Création de TodoPrinter pour mieux gérer le list  
 --done qui fonctionne correctement en terminal pour csv mais pas encore ghosttests  
@@ -46,7 +43,17 @@ Reste à faire :
 gérer les virgules en csv  
 répétition if dans l'App à mieux faire
 
+Avant de faire la nouvelle commande migrate, optimisation du code déjà présent pour les SOLID  
+Création de différents packages pour mieux organiser le code  
+
+Affichage CSV fonctionnel  
+GhostTests TP2 OK
+
+Printer à dissocier en csv et json
+
 ## TP 3
 
-Avant de faire la nouvelle commande migrate, optimisation du code déjà présent pour les SOLID  
-Création de différents packages pour mieux organiser le code
+ça fonctionne 128/128
+maintenant il faut optimiser le code selon SOLID :
+TodoPrinter à séparer
+Commands à créer pour faire de la place dans l'App

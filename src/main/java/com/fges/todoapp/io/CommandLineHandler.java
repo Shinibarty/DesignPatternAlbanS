@@ -6,10 +6,7 @@ public class CommandLineHandler {
         Options cliOptions = new Options();
         cliOptions.addRequiredOption("s", "source", true, "File containing the todos");
         cliOptions.addOption("d", "done", false, "Si présent, la tâche est finie");
-        /*
         cliOptions.addOption("o", "output", true, "Output file for migrate command");
-        cliOptions.addOption("m", "migrate", false, "Migrate todos from source to output");
-         */
 
         CommandLineParser parser = new DefaultParser();
         return parser.parse(cliOptions, args);
