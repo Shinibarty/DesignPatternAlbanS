@@ -23,7 +23,7 @@
 
 ---
 
-## SCHEMA (fait avec PlantUML)
+## SCHEMA (fait avec PlantUML, la prévisu fonctionne sur IDEA mais pas github visiblement)
 ```plantuml
 @startuml
 
