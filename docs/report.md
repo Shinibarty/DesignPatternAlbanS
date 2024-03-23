@@ -23,6 +23,35 @@
 
 ---
 
+## SCHEMA (fait avec PlantUML)
+```plantuml
+@startuml
+
+App --> CommandLineHandler : Uses
+CommandLineHandler --> cmd : Finds
+cmd --> insertTodo
+cmd --> listTodos 
+cmd --> migrate 
+(insertTodo,listTodos) --> TodoManagerFactory
+TodoManagerFactory --> TodoManager : Implements
+migrate --> source
+source --> TodoSourceReaderFactory : Uses
+TodoSourceReaderFactory --> TodoReader : Implements
+TodoReader --> ListeDeTodos : Finds
+ListeDeTodos --> TodoWriter : Uses
+migrate --> output
+output --> TodoDestinationWriterFactory : Uses
+TodoDestinationWriterFactory --> TodoWriter : Implements
+insertTodo --> TodoWriter : Implements
+TodoWriter --> FileHandler : Uses
+listTodos --> FileHandler : Uses
+FileHandler --> TodoPrinter : Uses
+TodoPrinter --> TodoReader : Implements
+TodoReader --> TodoPrinterConsole : Uses
+
+@enduml
+```
+
 ## TP1
 
 Réalisation du Single Responsability Principle -> Création de nouvelles classes pour séparer les responsabilités.  
